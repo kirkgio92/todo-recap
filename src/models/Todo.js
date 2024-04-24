@@ -14,12 +14,12 @@ const todoSchema = new mongoose.Schema({
   },
   todo_title: {
     type: String,
-    deafult: "Not Title provided",
+    default: "Not Title provided",
     required: false,
   },
   todo_content: {
     type: String,
-    deafult: "Not Content provided",
+    default: "Not Content provided",
     required: false,
   },
   todo_date: {
