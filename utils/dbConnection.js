@@ -11,7 +11,6 @@ async function dbConnection() {
   }
 
   if (!process.env.MONGODB_URI) {
-    console.log(process.env.DB_NAME);
     throw new Error("Add Mongo URI to the .env.local file");
   }
 

@@ -1,0 +1,8 @@
+@import "../styles/mixins.scss";
+@import "../styles/variables.scss";
+
+.main {
+  @include display(flex, column, space-between, center, 0, 0);
+  padding: 6rem;
+  min-height: 100vh;
+}
