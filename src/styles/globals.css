@@ -1,6 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap");
 
 * {
+  font-family: "Montserrat";
   box-sizing: border-box;
   padding: 0;
   margin: 0;
@@ -15,6 +16,7 @@ body {
   margin: 0 auto;
   font-size: 16px;
   font-family: "Montserrat", sans-serif;
+  background-color: #dddddd;
 }
 
 img {
@@ -30,12 +32,25 @@ ul {
   list-style-type: none;
 }
 
-.button {
+button {
+  background-color: #cc2936;
+  border: none;
+  color: #dddddd;
+  border-radius: 5px;
   display: inline-block;
-  padding: 15px 25px;
+  padding: 6px 12px;
   text-decoration: none;
   font-weight: 600;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  line-height: auto;
+  letter-spacing: 1px;
   transition: all 0.3s ease;
+}
+button:hover {
+  background-color: #08415c;
+  color: #b5ffe1;
+  transform: scale(1.1);
 }
 
 h1 {
@@ -62,4 +77,9 @@ p {
   font-size: 0.9rem;
   font-weight: 400;
   line-height: 20px;
+}
+
+.react-datepicker-wrapper {
+  width: 100%;
+  text-align: center;
 }
