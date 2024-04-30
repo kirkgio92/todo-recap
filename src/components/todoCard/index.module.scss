@@ -1,1 +1,15 @@
 @import "../../styles/mixins.scss";
+@import "../../styles/variables.scss";
+
+.wrapper {
+  @include display(flex, column, center, center, 6px, 0);
+  @include font("Montserrat", 600, 0.8rem, none, uppercase, 1px, inherit);
+  width: 100%;
+  background-color: $indigo;
+  color: $whitesmoke;
+  border-radius: 12px;
+  margin-bottom: 12px;
+  margin-top: 12px;
+  padding: 6px;
+  box-shadow: $box-shadow;
+}

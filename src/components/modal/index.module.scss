@@ -1,7 +1,7 @@
 @import "../../styles/mixins.scss";
 @import "../../styles/variables.scss";
 
-.wrapper {
+.container {
   @include display(flex, column, center, center, 0, 0);
   position: fixed;
   top: 0;
@@ -11,47 +11,76 @@
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 9999;
 
-  form {
-    @include display(flex, column, center, center, 6px, 0);
+  .wrapper {
+    @include display(flex, column, center, center, 0, 0);
     @include font("Montserrat", 600, 0.8rem, none, uppercase, 1px, inherit);
     background-color: $indigo;
     padding: 12px;
     border-radius: 12px;
     width: 80%;
 
-    input,
-    .content,
-    select {
-      width: 95%;
-      padding: 6px 12px;
-      text-align: center;
-      border: 1px solid $black;
-      border-radius: 5px;
-      outline: none;
-      background-color: $whitesmoke;
-      color: $black;
-      box-shadow: $box-shadow;
-    }
+    form {
+      @include display(flex, column, center, center, 6px, 0);
+      width: 100%;
 
-    .button {
-      @include font("Montserrat", 600, 0.8rem, none, uppercase, 1px, auto);
-      background-color: $red;
-      box-shadow: $box-shadow;
-      border: none;
-      color: $whitesmoke;
-      border-radius: 5px;
-      display: inline-block;
-      padding: 6px 12px;
-      text-decoration: none;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      transition: all 0.3s ease;
-
-      &:hover {
-        background-color: $sage;
+      input,
+      .content,
+      select,
+      button {
+        width: 100%;
+        padding: 6px 12px;
+        text-align: center;
+        border: 1px solid $black;
+        border-radius: 5px;
+        outline: none;
+        background-color: $whitesmoke;
         color: $black;
-        transform: scale(1.02);
+        box-shadow: $box-shadow;
+      }
+
+      .closeBtn {
+        @include font("Montserrat", 600, 0.8rem, none, uppercase, 1px, auto);
+        background-color: $sage;
+        box-shadow: $box-shadow;
+        border: none;
+        color: $black;
+        border-radius: 5px;
+        display: inline-block;
+        padding: 6px 12px;
+        text-decoration: none;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        transition: all 0.3s ease;
+        cursor: pointer;
+
+        &:hover {
+          background-color: $red;
+          color: $whitesmoke;
+          transform: scale(1.02);
+        }
+      }
+      .button {
+        @include font("Montserrat", 600, 0.8rem, none, uppercase, 1px, auto);
+        background-color: $red;
+        box-shadow: $box-shadow;
+        border: none;
+        color: $whitesmoke;
+        border-radius: 5px;
+        display: inline-block;
+        padding: 6px 12px;
+        text-decoration: none;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        transition: all 0.3s ease;
+        cursor: pointer;
+
+        &:hover {
+          background-color: $sage;
+          color: $black;
+          transform: scale(1.02);
+        }
       }
     }
   }

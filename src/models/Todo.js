@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 const todoSchema = new mongoose.Schema({
   username: {
     type: String,
-    default: "Username not provided",
+    default: "kirkgio92",
     required: false,
   },
   avatar: {

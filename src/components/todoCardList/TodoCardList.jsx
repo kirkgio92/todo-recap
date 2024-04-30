@@ -12,11 +12,13 @@ const TodoCardList = () => {
       .then((data) => setTodoData(data.data));
   }, []);
 
+  console.log(todoData);
+
   return (
     <div>
-      {todoData.map((todo, index) => {
-        <TodoCard key={index} todoData={todo} />;
-      })}
+      {todoData.map((todo, index) => (
+        <TodoCard key={index} todoData={todo} />
+      ))}
     </div>
   );
 };

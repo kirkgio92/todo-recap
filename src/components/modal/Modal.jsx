@@ -2,6 +2,7 @@ import styles from "./index.module.scss";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { useState } from "react";
+import { useRouter } from "next/router";
 
 const Modal = ({ onClose }) => {
   const [time, setTime] = useState(new Date());
@@ -9,6 +10,7 @@ const Modal = ({ onClose }) => {
   const [content, setContent] = useState("");
   const [category, setCategory] = useState("");
   const [title, setTitle] = useState("");
+  const router = useRouter();
 
   const categories = ["Work", "Personal", "Home"];
 
@@ -35,6 +37,7 @@ const Modal = ({ onClose }) => {
         throw new Error("Network Response was not ok!");
       }
       onClose();
+      router.reload("/");
     } catch (error) {
       console.error("Error:", error);
     }
@@ -42,42 +45,51 @@ const Modal = ({ onClose }) => {
 
   return (
     <>
-      <div className={styles.wrapper}>
-        <form onSubmit={handleOnSubmit}>
-          <input
-            value={title}
-            type="text"
-            placeholder="Task title"
-            onChange={(e) => setTitle(e.target.value)}
-          />
-          <textarea
-            rows="4"
-            className={styles.content}
-            value={content}
-            type="text"
-            placeholder="Describe the task here..."
-            onChange={(e) => setContent(e.target.value)}
-          />
-          <DatePicker
-            selected={time}
-            onChange={(time) => setTime(time)}
-            showTimeSelect
-            showTimeSelectOnly
-            timeIntervals={15}
-            timeCaption="Time"
-            dateFormat="h:mm aa"
-          />
-          <DatePicker selected={date} onChange={(date) => setDate(date)} />
-          <select onChange={(e) => setCategory(e.target.value)}>
-            {categories.map((category, index) => (
-              <option name="categories" key={index} value={category}>
-                {category}
-              </option>
-            ))}
-            ;
-          </select>
-          <input type="submit" value="Create Task!" className={styles.button} />
-        </form>
+      <div className={styles.container}>
+        <div className={styles.wrapper}>
+          <form onSubmit={handleOnSubmit}>
+            <button onClick={onClose} className={styles.closeBtn}>
+              Go Back
+            </button>
+            <input
+              value={title}
+              type="text"
+              placeholder="Task title"
+              onChange={(e) => setTitle(e.target.value)}
+            />
+            <textarea
+              rows="4"
+              className={styles.content}
+              value={content}
+              type="text"
+              placeholder="Describe the task here..."
+              onChange={(e) => setContent(e.target.value)}
+            />
+            <DatePicker
+              selected={time}
+              onChange={(time) => setTime(time)}
+              showTimeSelect
+              showTimeSelectOnly
+              timeIntervals={15}
+              timeCaption="Time"
+              dateFormat="h:mm aa"
+            />
+            <DatePicker selected={date} onChange={(date) => setDate(date)} />
+            <select onChange={(e) => setCategory(e.target.value)}>
+              {categories.map((category, index) => (
+                <option name="categories" key={index} value={category}>
+                  {category}
+                </option>
+              ))}
+              ;
+            </select>
+            <input
+              type="submit"
+              value="Create Task!"
+              className={styles.button}
+            />
+          </form>
+        </div>
       </div>
     </>
   );

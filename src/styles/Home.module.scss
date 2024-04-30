@@ -3,6 +3,6 @@
 
 .main {
   @include display(flex, column, space-between, center, 0, 0);
-  padding: 6rem;
+  padding: 2rem;
   min-height: 100vh;
 }

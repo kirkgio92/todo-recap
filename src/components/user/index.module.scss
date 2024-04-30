@@ -1,0 +1,21 @@
+@import "../../styles/mixins.scss";
+@import "../../styles/variables.scss";
+
+.userWrapper {
+  @include display(flex, row, space-between, center, 6px, 0);
+  @include font("Montserrat", 600, 0.8rem, none, uppercase, 1px, inherit);
+  width: 100%;
+  max-width: 720px;
+  padding-bottom: 6px;
+  border-bottom: 2px solid $black;
+  margin-bottom: 12px;
+
+  .image {
+    border-radius: 100%;
+    box-shadow: $box-shadow;
+  }
+
+  h2 {
+    text-shadow: 1px 1px 5px #1f2421;
+  }
+}
