@@ -1,1 +1,6 @@
 @import "../../styles/mixins.scss";
+@import "../../styles/variables.scss";
+
+.mainWrapper {
+  @include display(flex, row, center, flex-start, 6px, 0);
+}

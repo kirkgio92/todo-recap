@@ -70,7 +70,7 @@ const ModalPut = ({ onClose }) => {
             <input
               value={title}
               type="text"
-              placeholder={todoData.todo_title}
+              placeholder="Give a title to your task"
               onChange={(e) => setTitle(e.target.value)}
             />
             <textarea
@@ -99,11 +99,7 @@ const ModalPut = ({ onClose }) => {
               ))}
               ;
             </select>
-            <input
-              type="submit"
-              value="Create Task!"
-              className={styles.button}
-            />
+            <input type="submit" value="Edit Task!" className={styles.button} />
           </form>
         </div>
       </div>

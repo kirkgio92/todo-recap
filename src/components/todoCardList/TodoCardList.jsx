@@ -15,11 +15,30 @@ const TodoCardList = () => {
   console.log(todoData);
 
   return (
-    <div>
-      {todoData.map((todo, index) => (
-        <TodoCard key={index} todoData={todo} />
-      ))}
-    </div>
+    <>
+      <div className={styles.mainWrapper}>
+        <div className={styles.inProgress}>
+          <h2>List of in progress task</h2>
+          {todoData
+            .slice()
+            .reverse()
+            .filter((todo) => todo.isInProgress)
+            .map((todo, index) => (
+              <TodoCard key={index} todoData={todo} />
+            ))}
+        </div>
+        <div className={styles.notInProgress}>
+          <h2>List of NOT in progress task</h2>
+          {todoData
+            .slice()
+            .reverse()
+            .filter((todo) => todo.isInProgress === false)
+            .map((todo, index) => (
+              <TodoCard key={index} todoData={todo} />
+            ))}
+        </div>
+      </div>
+    </>
   );
 };
 
