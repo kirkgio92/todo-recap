@@ -1,37 +1,53 @@
 import styles from "./index.module.scss";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
+import { getCookie } from "cookies-next";
 
-const Modal = ({ onClose }) => {
+const ModalPut = ({ onClose }) => {
   const [time, setTime] = useState(new Date());
   const [date, setDate] = useState(new Date());
   const [content, setContent] = useState("");
   const [category, setCategory] = useState("Work");
   const [title, setTitle] = useState("");
+  const [todoData, setTodoData] = useState([]);
   const router = useRouter();
+
+  const todoId = getCookie("TodoID");
+
+  useEffect(() => {
+    fetch(`/api/todos/${todoId}`)
+      .then((res) => res.json())
+      .then((data) => {
+        setTodoData(data.data);
+        setTitle(data.data.todo_title);
+        setContent(data.data.todo_content);
+        setDate(new Date(data.data.todo_date));
+        setTime(new Date(data.data.todo_time));
+        setCategory(data.data.categories);
+      });
+  }, []);
 
   const categories = ["Work", "Personal", "Home"];
 
   const handleOnSubmit = async (e) => {
     e.preventDefault();
-    const todoData = {
+    const updatedTodoData = {
       todo_title: title,
       todo_content: content,
       todo_date: date,
       todo_time: time,
       categories: category,
-      isInProgress: true,
     };
 
     try {
-      const response = await fetch("/api/todos", {
-        method: "POST",
+      const response = await fetch(`/api/todos/${todoId}`, {
+        method: "PUT",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(todoData),
+        body: JSON.stringify(updatedTodoData),
       });
       if (!response.ok) {
         throw new Error("Network Response was not ok!");
@@ -54,7 +70,7 @@ const Modal = ({ onClose }) => {
             <input
               value={title}
               type="text"
-              placeholder="Task title"
+              placeholder={todoData.todo_title}
               onChange={(e) => setTitle(e.target.value)}
             />
             <textarea
@@ -95,4 +111,4 @@ const Modal = ({ onClose }) => {
   );
 };
 
-export default Modal;
+export default ModalPut;

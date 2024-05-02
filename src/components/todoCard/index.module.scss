@@ -3,7 +3,7 @@
 
 .wrapper {
   @include display(flex, column, center, center, 6px, 0);
-  @include font("Montserrat", 600, 0.8rem, none, uppercase, 1px, inherit);
+  @include font("Montserrat", 600, 0.8rem, none, inherit, 1px, inherit);
   width: 100%;
   background-color: $indigo;
   color: $whitesmoke;
@@ -12,4 +12,12 @@
   margin-top: 12px;
   padding: 6px;
   box-shadow: $box-shadow;
+
+  .categoryLabel {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    margin-right: 8px;
+    border-radius: 2px;
+  }
 }

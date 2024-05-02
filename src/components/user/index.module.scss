@@ -2,7 +2,7 @@
 @import "../../styles/variables.scss";
 
 .userWrapper {
-  @include display(flex, row, space-between, center, 6px, 0);
+  @include display(flex, row, flex-start, center, 6px, 0);
   @include font("Montserrat", 600, 0.8rem, none, uppercase, 1px, inherit);
   width: 100%;
   max-width: 720px;
