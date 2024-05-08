@@ -2,5 +2,19 @@
 @import "../../styles/variables.scss";
 
 .mainWrapper {
-  @include display(flex, row, center, flex-start, 6px, 0);
+  @include display(flex, row, center, flex-start, 24px, 0);
+  margin-top: 12px;
+
+  .inProgress {
+    @include display(flex, column, center, flex-start, 6px, 0);
+  }
+
+  .notInProgress {
+    @include display(flex, column, center, flex-start, 6px, 0);
+  }
+
+  .listTitle {
+    text-align: center;
+    width: 100%;
+  }
 }

@@ -3,8 +3,19 @@ import styles from "@/styles/Home.module.scss";
 import AddTodo from "@/components/addTodo";
 import TodoCardList from "@/components/todoCardList";
 import User from "@/components/user";
+import Calendar from "@/components/calendar";
+import { useState } from "react";
+import Details from "./Details";
 
 export default function Home() {
+  const [showDetails, setShowDetails] = useState(false);
+  const [data, setData] = useState(null);
+
+  const showDetailsHandle = (dayStr) => {
+    setData(dayStr);
+    setShowDetails(true);
+  };
+
   return (
     <>
       <Head>
@@ -15,8 +26,11 @@ export default function Home() {
       </Head>
       <main className={`${styles.main}`}>
         <User />
+        <Calendar showDetailsHandle={showDetailsHandle} />
+        <br />
+        {showDetails && <Details data={data} />}
         <AddTodo />
-        <TodoCardList />
+        <TodoCardList data={data} />
       </main>
     </>
   );

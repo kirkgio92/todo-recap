@@ -1,9 +1,10 @@
 import TodoCard from "../todoCard/TodoCard";
 import styles from "./index.module.scss";
+import { format } from "date-fns";
 
 import { useState, useEffect } from "react";
 
-const TodoCardList = () => {
+const TodoCardList = ({ data }) => {
   const [todoData, setTodoData] = useState([]);
 
   useEffect(() => {
@@ -12,30 +13,31 @@ const TodoCardList = () => {
       .then((data) => setTodoData(data.data));
   }, []);
 
-  console.log(todoData);
+  const selectedDate = format(new Date(data), "yyyy-MM-dd");
+
+  console.log(data);
 
   return (
     <>
       <div className={styles.mainWrapper}>
         <div className={styles.inProgress}>
-          <h2>List of in progress task</h2>
-          {todoData
-            .slice()
-            .reverse()
-            .filter((todo) => todo.isInProgress)
-            .map((todo, index) => (
-              <TodoCard key={index} todoData={todo} />
-            ))}
-        </div>
-        <div className={styles.notInProgress}>
-          <h2>List of NOT in progress task</h2>
-          {todoData
-            .slice()
-            .reverse()
-            .filter((todo) => todo.isInProgress === false)
-            .map((todo, index) => (
-              <TodoCard key={index} todoData={todo} />
-            ))}
+          <h2 className={styles.listTitle}>In progress task</h2>
+          {data === null
+            ? todoData
+                .slice()
+                .reverse()
+                .filter((todo) => todo.isInProgress)
+                .map((todo, index) => <TodoCard key={index} todoData={todo} />)
+            : todoData
+                .slice()
+                .reverse()
+                .filter((todo) => todo.isInProgress)
+                .filter(
+                  (todo) =>
+                    format(new Date(todo.todo_date), "yyyy-MM-dd") ===
+                    selectedDate
+                )
+                .map((todo, index) => <TodoCard key={index} todoData={todo} />)}
         </div>
       </div>
     </>
